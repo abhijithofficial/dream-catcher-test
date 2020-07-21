@@ -1,0 +1,47 @@
+{% extends "user/base.html" %} {% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-5">
+    <h2>Login</h2>
+  </div>
+</div>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-5">
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endif %}
+    <form method="POST" id="login_submit" autocomplete="off">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="signInInputEmail">Username</label>
+        <input
+          type="text"
+          name="username"
+          class="form-control"
+          id="signInInputEmail"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="signInInputPassword">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="signInInputPassword"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <hr />
+    <div class="text-center">
+      Need an account? <a href="{% url 'signupuser' %}">Sign Up here</a>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block script%} {% load static %}
+
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

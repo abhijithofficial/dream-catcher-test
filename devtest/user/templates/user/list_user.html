@@ -1,0 +1,41 @@
+{% extends "user/base.html" %} {% block content %}
+<div class="user-data mt-5">
+  <div class="text-center"><h1>USER DATA</h1></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody class="tr-data"></tbody>
+  </table>
+</div>
+
+<script>
+  async function addData() {
+    let data = await fetch("http://localhost:8000/api/userdata/", {
+      method: "GET",
+      headers: { Authorization: "Token " + "{{ token }}" },
+    })
+      .then((response) => response.json())
+      .then((json) => json);
+    let trTableId = document.querySelector(".tr-data");
+    data.forEach((element, index) => {
+      let trHTML = `<th scope="row">${index + 1}</th>
+        <td>${element.first_name}</td>
+        <td>${element.last_name}</td>
+        <td>${element.username}</td>
+        <td>${element.phonenumber}</td>`;
+      trTableId.insertAdjacentHTML("beforeend", trHTML);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    addData();
+  });
+</script>
+{% endblock %}
