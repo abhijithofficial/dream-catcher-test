@@ -4,7 +4,7 @@ signInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let username = document.getElementById("signInInputEmail").value;
   let password = document.getElementById("signInInputPassword").value;
-  fetch("http://localhost:8000/api/login/", {
+  fetch("http://" + window.location.host + "/api/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

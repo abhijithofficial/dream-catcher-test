@@ -17,10 +17,13 @@
 
 <script>
   async function addData() {
-    let data = await fetch("http://localhost:8000/api/userdata/", {
-      method: "GET",
-      headers: { Authorization: "Token " + "{{ token }}" },
-    })
+    let data = await fetch(
+      "http://" + window.location.host + "/api/userdata/",
+      {
+        method: "GET",
+        headers: { Authorization: "Token " + "{{ token }}" },
+      }
+    )
       .then((response) => response.json())
       .then((json) => json);
     let trTableId = document.querySelector(".tr-data");

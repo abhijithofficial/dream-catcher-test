@@ -13,7 +13,7 @@ signUpForm.addEventListener("submit", (e) => {
   if (password !== password_two) {
     return alert("Confirm Password Does Not Match");
   }
-  fetch("http://localhost:8000/api/register/", {
+  fetch("http://" + window.location.host + "/api/register/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
